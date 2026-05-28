@@ -8,8 +8,7 @@ class ComandaRestaurante
     private array $comanda = [];
     private float $totalPrice = 0;
 
-    public function __construct(private Menu $menu)
-    {}
+    public function __construct(private Menu $menu) {}
 
     private function comandaToString(): string
     {
@@ -72,6 +71,11 @@ class ComandaRestaurante
         return  $this->comandaToString();
     }
 
+    private function getCuenta(): string
+    {
+        return "Total: " . $this->totalPrice;
+    }
+
     public function manageComanda(string $action): string
     {
         if (!$action) return "";
@@ -104,7 +108,7 @@ class ComandaRestaurante
         }
         elseif ($instruction === "cuenta")
         {
-            return "Total: " . $this->totalPrice;
+            return $this->getCuenta();
         }
 
         return "Instruccion no existente";
