@@ -12,6 +12,8 @@ class ComandaRestaurante
 
     private function comandaToString(): string
     {
+        ksort($this->comanda);
+
         $auxiliarComanda = [];
         foreach ($this->comanda as $dish => $amount)
         {
