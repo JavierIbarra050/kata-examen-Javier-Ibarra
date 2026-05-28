@@ -128,7 +128,7 @@ class ComandaRestauranteTest extends TestCase
 
         $output = $comanda->manageComanda("eliminar pasta");
 
-        $this->assertEquals("Pizza x1 | Total: 4.3", $output);
+        $this->assertEquals("pizza x1 | Total: 4.3", $output);
     }
 
 }

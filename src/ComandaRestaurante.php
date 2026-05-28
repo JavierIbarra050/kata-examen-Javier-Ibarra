@@ -16,6 +16,7 @@ class ComandaRestaurante
         $auxiliarComanda = [];
         foreach ($this->comanda as $dish => $amount)
         {
+            $amount = explode(",", $this->comanda[$dish])[0];
             $auxiliarComanda[] = $dish . " x" . $amount;
         }
 
@@ -33,11 +34,14 @@ class ComandaRestaurante
 
         if(!isset($this->comanda[$dish]))
         {
-            $this->comanda[$dish] = $amount;
+            $this->comanda[$dish] = $amount . "," . $price;
         }
         else
         {
-            $this->comanda[$dish] += $amount;
+            $dishParts = explode(",", $this->comanda[$dish]);
+            $newAmount = $amount + (int) $dishParts[0];
+
+            $this->comanda[$dish] = $newAmount . "," . $dishParts[1];
         }
 
         return  $this->comandaToString();
@@ -45,7 +49,16 @@ class ComandaRestaurante
 
     private function deleteDish(string $dish): string
     {
-        return "El plato seleccionado no existe";
+        if(!isset($this->comanda[$dish]))
+        {
+            return "El plato seleccionado no existe";
+        }
+
+        $dishPrice = explode("," , $this->comanda[$dish])[1];
+
+        unset($this->comanda[$dish]);
+        $this->totalPrice -= (float) $dishPrice;
+        return  $this->comandaToString();
     }
 
     public function manageComanda(string $action): string
