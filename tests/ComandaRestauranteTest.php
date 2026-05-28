@@ -3,6 +3,7 @@
 namespace Deg540\ExamenJavierIbarra\Test;
 
 use Deg540\ExamenJavierIbarra\ComandaRestaurante;
+use Menu;
 use PHPUnit\Framework\TestCase;
 
 class ComandaRestauranteTest extends TestCase
@@ -12,7 +13,8 @@ class ComandaRestauranteTest extends TestCase
      */
     public function givenEmptyActionReturnsEmptyString()
     {
-        $comanda = new ComandaRestaurante();
+        $menuDummy = $this->createMock(Menu::class);
+        $comanda = new ComandaRestaurante($menuDummy);
 
         $output = $comanda->manageComanda("");
 
@@ -24,7 +26,10 @@ class ComandaRestauranteTest extends TestCase
      */
     public function givenAñadirDishWithoutAmountReturnsDishX1()
     {
-        $comanda = new ComandaRestaurante();
+        $menuMock = $this->createMock(Menu::class);
+        $menuMock->method('getPrice')->willReturn(4);
+
+        $comanda = new ComandaRestaurante($menuMock);
 
         $output = $comanda->manageComanda("añadir pizza");
 
@@ -36,7 +41,10 @@ class ComandaRestauranteTest extends TestCase
      */
     public function givenAñadirTwoDifferentDishesReturnsDishesXAmount()
     {
-        $comanda = new ComandaRestaurante();
+        $menuMock = $this->createMock(Menu::class);
+        $menuMock->method('getPrice')->willReturn(4);
+
+        $comanda = new ComandaRestaurante($menuMock);
 
         $comanda->manageComanda("añadir pizza");
         $output = $comanda->manageComanda("añadir pasta");
@@ -49,11 +57,30 @@ class ComandaRestauranteTest extends TestCase
      */
     public function givenAñadirSameDishReturnsSameDishXSumAmount()
     {
-        $comanda = new ComandaRestaurante();
+        $menuMock = $this->createMock(Menu::class);
+        $menuMock->method('getPrice')->willReturn(4);
+
+        $comanda = new ComandaRestaurante($menuMock);
 
         $comanda->manageComanda("añadir pizza");
         $output = $comanda->manageComanda("añadir pizza");
 
         $this->assertEquals("pizza x2", $output);
     }
+
+    /**
+     * @test
+     */
+    public function givenAñadirNotFoundDishReturnsError()
+    {
+        $menuMock = $this->createMock(Menu::class);
+        $menuMock->method('getPrice')->willReturn(null);
+
+        $comanda = new ComandaRestaurante($menuMock);
+
+        $output = $comanda->manageComanda("añadir chorizo");
+
+        $this->assertEquals("El plato seleccionado no existe en el menu", $output);
+    }
+
 }
