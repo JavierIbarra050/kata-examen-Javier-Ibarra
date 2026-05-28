@@ -21,6 +21,9 @@ class ComandaRestaurante
         }
 
         $dishes = implode(" , ", $auxiliarComanda);
+
+        if($auxiliarComanda == []) return "La comanda ha sido vaciada";
+
         return $dishes . " | " . "Total: " . $this->totalPrice;
     }
 
@@ -85,5 +88,7 @@ class ComandaRestaurante
         {
             return $this->deleteDish($dish);
         }
+
+        return "Instruccion no existente";
     }
 }
