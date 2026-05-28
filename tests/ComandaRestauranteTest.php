@@ -42,4 +42,17 @@ class ComandaRestauranteTest extends TestCase
 
         $this->assertEquals("pizza x1", $output);
     }
+
+    /**
+     * @test
+     */
+    public function givenAñadirTwoDifferentDishesReturnsDishesXAmount()
+    {
+        $comanda = new ComandaRestaurante();
+
+        $comanda->manageComanda("añadir pizza");
+        $output = $comanda->manageComanda("añadir pasta");
+
+        $this->assertEquals("pizza x1, pasta x1", $output);
+    }
 }
