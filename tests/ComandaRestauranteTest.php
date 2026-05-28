@@ -147,4 +147,19 @@ class ComandaRestauranteTest extends TestCase
         $this->assertEquals("La comanda ha sido vaciada", $output);
     }
 
+    /**
+     * @test
+     */
+    public function givenVaciarReturnsEmptyComandaMessage()
+    {
+        $menuDummy = $this->createMock(Menu::class);
+
+        $comanda = new ComandaRestaurante($menuDummy);
+
+        $comanda->manageComanda("añadir pasta");
+        $output = $comanda->manageComanda("vaciar");
+
+        $this->assertEquals("La comanda ha sido vaciada", $output);
+    }
+
 }
