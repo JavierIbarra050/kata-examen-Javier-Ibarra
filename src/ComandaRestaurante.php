@@ -2,9 +2,14 @@
 
 namespace Deg540\ExamenJavierIbarra;
 
+use Menu;
+
 class ComandaRestaurante
 {
     private array $comanda = [];
+
+    public function __construct(private Menu $menu)
+    {}
 
     private function comandaToString(): string
     {
@@ -19,6 +24,10 @@ class ComandaRestaurante
 
     private function addDish(string $dish, int $amount): string
     {
+        $price = $this->menu->getPrice($dish);
+
+        if($price === null) return "El plato seleccionado no existe en el menu";
+
         if(!isset($this->comanda[$dish]))
         {
             $this->comanda[$dish] = $amount;
