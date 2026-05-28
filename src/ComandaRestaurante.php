@@ -6,6 +6,11 @@ class ComandaRestaurante
 {
     public function gestionarComanda(string $action): string
     {
-        return "";
+        if (!$action) return "";
+
+        $action = strtolower($action);
+        $action = explode(" ", $action);
+
+        return $action[1];
     }
 }
