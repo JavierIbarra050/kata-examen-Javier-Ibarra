@@ -8,8 +8,6 @@ class ComandaRestaurante
 
     private function comandaToString(): string
     {
-        $dishes = array_keys($this->comanda);
-
         $auxiliarComanda = [];
         foreach ($this->comanda as $dish => $amount)
         {
