@@ -27,6 +27,14 @@ class ComandaRestaurante
         return $dishes . " | " . "Total: " . $this->totalPrice;
     }
 
+    private function emptyComanda(): string
+    {
+        $this->comanda = [];
+        $this->totalPrice = 0;
+
+        return $this->comandaToString();
+    }
+
     private function addDish(string $dish, int $amount): string
     {
         $price = $this->menu->getPrice($dish);
@@ -69,6 +77,11 @@ class ComandaRestaurante
         if (!$action) return "";
 
         $action = strtolower($action);
+
+        if ($action == 'vaciar') {
+            return $this->emptyComanda();
+        }
+
         $action = explode(" ", $action);
 
         $instruction = $action[0];
@@ -80,12 +93,7 @@ class ComandaRestaurante
             $amount = (int) $action[2];
         }
 
-        if ($instruction === "vaciar") {
-            $this->comanda = [];
-            $this->totalPrice = 0;
 
-            return $this->comandaToString();
-        }
         if($instruction === "añadir")
         {
             return $this->addDish($dish, $amount);

@@ -153,7 +153,6 @@ class ComandaRestauranteTest extends TestCase
     public function givenVaciarReturnsEmptyComandaMessage()
     {
         $menuDummy = $this->createMock(Menu::class);
-
         $comanda = new ComandaRestaurante($menuDummy);
 
         $comanda->manageComanda("añadir pasta");
