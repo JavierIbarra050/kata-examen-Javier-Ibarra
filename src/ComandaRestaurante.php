@@ -19,7 +19,7 @@ class ComandaRestaurante
             $auxiliarComanda[] = $dish . " x" . $amount;
         }
 
-        $dishes = implode(" , ", $auxiliarComanda);
+        $dishes = implode(", ", $auxiliarComanda);
 
         if($auxiliarComanda == []) return "La comanda ha sido vaciada";
 

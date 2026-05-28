@@ -49,7 +49,7 @@ class ComandaRestauranteTest extends TestCase
         $comanda->manageComanda("añadir pizza");
         $output = $comanda->manageComanda("añadir pasta");
 
-        $this->assertEquals("pizza x1 , pasta x1 | Total: 8.4", $output);
+        $this->assertEquals("pizza x1, pasta x1 | Total: 8.4", $output);
     }
 
     /**
@@ -189,6 +189,22 @@ class ComandaRestauranteTest extends TestCase
         $output = $comanda->manageComanda("cuenta");
 
         $this->assertEquals("Total: 0.00", $output);
+    }
+
+    /**
+     * @test
+     */
+    public function givenAñadirDishesReturnsDishesAlphabeticallyOrdered()
+    {
+        $menuMock = $this->createMock(Menu::class);
+        $menuMock->method('getPrice')->willReturn(4.3);
+        $comanda = new ComandaRestaurante($menuMock);
+
+        $comanda->manageComanda("añadir boloñesa");
+        $output = $comanda->manageComanda("añadir acelga");
+
+
+        $this->assertEquals("acelga x1, boloñesa x1 | Total: 8.6", $output);
     }
 
 }
