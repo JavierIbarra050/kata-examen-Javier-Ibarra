@@ -6,7 +6,13 @@ class ComandaRestaurante
 {
     private array $comanda = [];
 
-    public function gestionarComanda(string $action): string
+    private function addDish(string $dish, int $amount): string
+    {
+        $this->comanda[] = $dish . " x" . $amount;
+        return  $dish . " x" . $amount;
+    }
+
+    public function manageComanda(string $action): string
     {
         if (!$action) return "";
 
@@ -17,7 +23,6 @@ class ComandaRestaurante
         $dish = $action[1];
         $amount = $action[2];
 
-        $this->comanda[] = $dish . " x" . $amount;
-        return $this->comanda[0];
+        return $this->addDish($dish, $amount);
     }
 }

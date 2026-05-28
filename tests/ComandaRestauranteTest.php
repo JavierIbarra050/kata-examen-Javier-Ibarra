@@ -14,7 +14,7 @@ class ComandaRestauranteTest extends TestCase
     {
         $comanda = new ComandaRestaurante();
 
-        $output = $comanda->gestionarComanda("");
+        $output = $comanda->manageComanda("");
 
         $this->assertEquals("", $output);
     }
@@ -26,7 +26,7 @@ class ComandaRestauranteTest extends TestCase
     {
         $comanda = new ComandaRestaurante();
 
-        $output = $comanda->gestionarComanda("añadir pizza");
+        $output = $comanda->manageComanda("añadir pizza");
 
         $this->assertEquals("pizza", $output);
     }
@@ -38,7 +38,7 @@ class ComandaRestauranteTest extends TestCase
     {
         $comanda = new ComandaRestaurante();
 
-        $output = $comanda->gestionarComanda("añadir pizza 2");
+        $output = $comanda->manageComanda("añadir pizza 2");
 
         $this->assertEquals("pizza x2", $output);
     }
