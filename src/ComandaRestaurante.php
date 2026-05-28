@@ -11,6 +11,9 @@ class ComandaRestaurante
         $action = strtolower($action);
         $action = explode(" ", $action);
 
-        return $action[1];
+        $instruction = $action[0];
+        $dish = $action[1];
+
+        return $dish;
     }
 }
