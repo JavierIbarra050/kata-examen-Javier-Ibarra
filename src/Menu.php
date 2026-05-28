@@ -1,4 +1,5 @@
 <?php
+namespace Deg540\ExamenJavierIbarra;
 
 interface Menu
 {

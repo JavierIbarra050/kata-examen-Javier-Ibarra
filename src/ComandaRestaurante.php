@@ -2,7 +2,6 @@
 
 namespace Deg540\ExamenJavierIbarra;
 
-use Menu;
 
 class ComandaRestaurante
 {

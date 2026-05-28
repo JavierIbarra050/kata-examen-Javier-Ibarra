@@ -3,7 +3,7 @@
 namespace Deg540\ExamenJavierIbarra\Test;
 
 use Deg540\ExamenJavierIbarra\ComandaRestaurante;
-use Menu;
+use Deg540\ExamenJavierIbarra\Menu;
 use PHPUnit\Framework\TestCase;
 
 class ComandaRestauranteTest extends TestCase
@@ -27,7 +27,7 @@ class ComandaRestauranteTest extends TestCase
     public function givenAñadirDishWithoutAmountReturnsDishX1()
     {
         $menuMock = $this->createMock(Menu::class);
-        $menuMock->method('getPrice')->willReturn(4);
+        $menuMock->method('getPrice')->willReturn(4.3);
 
         $comanda = new ComandaRestaurante($menuMock);
 
@@ -42,7 +42,7 @@ class ComandaRestauranteTest extends TestCase
     public function givenAñadirTwoDifferentDishesReturnsDishesXAmount()
     {
         $menuMock = $this->createMock(Menu::class);
-        $menuMock->method('getPrice')->willReturn(4);
+        $menuMock->method('getPrice')->willReturn(4.2);
 
         $comanda = new ComandaRestaurante($menuMock);
 
@@ -58,7 +58,7 @@ class ComandaRestauranteTest extends TestCase
     public function givenAñadirSameDishReturnsSameDishXSumAmount()
     {
         $menuMock = $this->createMock(Menu::class);
-        $menuMock->method('getPrice')->willReturn(4);
+        $menuMock->method('getPrice')->willReturn(4.3);
 
         $comanda = new ComandaRestaurante($menuMock);
 
