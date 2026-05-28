@@ -53,6 +53,6 @@ class ComandaRestauranteTest extends TestCase
         $comanda->manageComanda("añadir pizza");
         $output = $comanda->manageComanda("añadir pasta");
 
-        $this->assertEquals("pizza x1, pasta x1", $output);
+        $this->assertEquals("pizza x1 | pasta x1", $output);
     }
 }

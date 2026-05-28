@@ -6,10 +6,24 @@ class ComandaRestaurante
 {
     private array $comanda = [];
 
+    private function comandaToString(): string
+    {
+        $dishes = array_keys($this->comanda);
+
+        $auxiliarComanda = [];
+        foreach ($this->comanda as $dish => $amount)
+        {
+            $auxiliarComanda[] = $dish . " x" . $amount;
+        }
+
+        return implode(" | ", $auxiliarComanda);
+    }
+
     private function addDish(string $dish, int $amount): string
     {
-        $this->comanda[] = $dish . " x" . $amount;
-        return  $dish . " x" . $amount;
+        $this->comanda[$dish] = $amount;
+
+        return  $this->comandaToString();
     }
 
     public function manageComanda(string $action): string
@@ -21,7 +35,13 @@ class ComandaRestaurante
 
         $instruction = $action[0];
         $dish = $action[1];
-        $amount = count($action) == 3 ? $action[2] : 1;
+
+        $amount = 1;
+
+        if (count($action) == 3)
+        {
+            $amount = (int) $action[2];
+        }
 
         return $this->addDish($dish, $amount);
     }
