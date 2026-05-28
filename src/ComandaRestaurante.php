@@ -73,6 +73,7 @@ class ComandaRestaurante
 
     private function getCuenta(): string
     {
+        if ($this->totalPrice == 0) return "Total: 0.00";
         return "Total: " . $this->totalPrice;
     }
 
