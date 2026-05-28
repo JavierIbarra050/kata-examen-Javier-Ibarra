@@ -83,4 +83,19 @@ class ComandaRestauranteTest extends TestCase
         $this->assertEquals("El plato seleccionado no existe en el menu", $output);
     }
 
+    /**
+     * @test
+     */
+    public function givenAñadirFoundDishReturnsDishWithAmountAndPrice()
+    {
+        $menuMock = $this->createMock(Menu::class);
+        $menuMock->method('getPrice')->willReturn(4.3);
+
+        $comanda = new ComandaRestaurante($menuMock);
+
+        $output = $comanda->manageComanda("añadir pasta");
+
+        $this->assertEquals("pasta x1 | Total: 4.3", $output);
+    }
+
 }
