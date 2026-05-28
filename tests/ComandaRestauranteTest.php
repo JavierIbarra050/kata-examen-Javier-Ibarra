@@ -131,4 +131,20 @@ class ComandaRestauranteTest extends TestCase
         $this->assertEquals("pizza x1 | Total: 4.3", $output);
     }
 
+    /**
+     * @test
+     */
+    public function givenEliminarDishIncludedInComandaAndComandaIsEmptyAfterThatReturnsEmptyComandaMessage()
+    {
+        $menuMock = $this->createMock(Menu::class);
+        $menuMock->method('getPrice')->willReturn(4.3);
+
+        $comanda = new ComandaRestaurante($menuMock);
+
+        $comanda->manageComanda("añadir pasta");
+        $output = $comanda->manageComanda("eliminar pasta");
+
+        $this->assertEquals("La comanda ha sido vaciada", $output);
+    }
+
 }
