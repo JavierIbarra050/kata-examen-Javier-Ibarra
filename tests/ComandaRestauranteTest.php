@@ -33,7 +33,7 @@ class ComandaRestauranteTest extends TestCase
 
         $output = $comanda->manageComanda("añadir pizza");
 
-        $this->assertEquals("pizza x1", $output);
+        $this->assertEquals("pizza x1 | Total: 4.3", $output);
     }
 
     /**
@@ -49,7 +49,7 @@ class ComandaRestauranteTest extends TestCase
         $comanda->manageComanda("añadir pizza");
         $output = $comanda->manageComanda("añadir pasta");
 
-        $this->assertEquals("pizza x1 | pasta x1", $output);
+        $this->assertEquals("pizza x1 , pasta x1 | Total: 8.4", $output);
     }
 
     /**
@@ -58,14 +58,14 @@ class ComandaRestauranteTest extends TestCase
     public function givenAñadirSameDishReturnsSameDishXSumAmount()
     {
         $menuMock = $this->createMock(Menu::class);
-        $menuMock->method('getPrice')->willReturn(4.3);
+        $menuMock->method('getPrice')->willReturn(2.1);
 
         $comanda = new ComandaRestaurante($menuMock);
 
         $comanda->manageComanda("añadir pizza");
         $output = $comanda->manageComanda("añadir pizza");
 
-        $this->assertEquals("pizza x2", $output);
+        $this->assertEquals("pizza x2 | Total: 4.2", $output);
     }
 
     /**
