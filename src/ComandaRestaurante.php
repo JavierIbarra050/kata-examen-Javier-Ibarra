@@ -94,13 +94,17 @@ class ComandaRestaurante
         }
 
 
-        if($instruction === "añadir")
+        if ($instruction === "añadir")
         {
             return $this->addDish($dish, $amount);
         }
-        elseif($instruction === "eliminar")
+        elseif ($instruction === "eliminar")
         {
             return $this->deleteDish($dish);
+        }
+        elseif ($instruction === "cuenta")
+        {
+            return "Total: " . $this->totalPrice;
         }
 
         return "Instruccion no existente";
