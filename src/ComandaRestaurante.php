@@ -43,6 +43,11 @@ class ComandaRestaurante
         return  $this->comandaToString();
     }
 
+    private function deleteDish(string $dish): string
+    {
+        return "El plato seleccionado no existe";
+    }
+
     public function manageComanda(string $action): string
     {
         if (!$action) return "";
@@ -54,12 +59,18 @@ class ComandaRestaurante
         $dish = $action[1];
 
         $amount = 1;
-
         if (count($action) == 3)
         {
             $amount = (int) $action[2];
         }
 
-        return $this->addDish($dish, $amount);
+        if($instruction === "añadir")
+        {
+            return $this->addDish($dish, $amount);
+        }
+        elseif($instruction === "eliminar")
+        {
+            return $this->deleteDish($dish);
+        }
     }
 }
