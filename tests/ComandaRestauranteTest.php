@@ -177,4 +177,18 @@ class ComandaRestauranteTest extends TestCase
         $this->assertEquals("Total: 4.3", $output);
     }
 
+    /**
+     * @test
+     */
+    public function givenCuentaWhereTotalPriceEquals0Returns0Dot00()
+    {
+        $menuDummy = $this->createMock(Menu::class);
+
+        $comanda = new ComandaRestaurante($menuDummy);
+
+        $output = $comanda->manageComanda("cuenta");
+
+        $this->assertEquals("Total: 0.00", $output);
+    }
+
 }
