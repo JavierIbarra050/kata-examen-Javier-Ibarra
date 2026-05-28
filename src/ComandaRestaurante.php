@@ -6,6 +6,6 @@ class ComandaRestaurante
 {
     public function gestionarComanda(string $action): string
     {
-
+        return "";
     }
 }
