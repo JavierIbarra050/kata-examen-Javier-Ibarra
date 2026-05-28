@@ -21,7 +21,7 @@ class ComandaRestaurante
 
         $instruction = $action[0];
         $dish = $action[1];
-        $amount = $action[2];
+        $amount = count($action) == 3 ? $action[2] : 1;
 
         return $this->addDish($dish, $amount);
     }
