@@ -6,6 +6,7 @@ namespace Deg540\ExamenJavierIbarra;
 class ComandaRestaurante
 {
     private array $comanda = [];
+    private float $totalPrice = 0;
 
     public function __construct(private Menu $menu)
     {}
@@ -18,7 +19,8 @@ class ComandaRestaurante
             $auxiliarComanda[] = $dish . " x" . $amount;
         }
 
-        return implode(" | ", $auxiliarComanda);
+        $dishes = implode(" , ", $auxiliarComanda);
+        return $dishes . " | " . "Total: " . $this->totalPrice;
     }
 
     private function addDish(string $dish, int $amount): string
@@ -26,6 +28,8 @@ class ComandaRestaurante
         $price = $this->menu->getPrice($dish);
 
         if($price === null) return "El plato seleccionado no existe en el menu";
+
+        $this->totalPrice += $price * $amount;
 
         if(!isset($this->comanda[$dish]))
         {
