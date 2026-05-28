@@ -19,7 +19,14 @@ class ComandaRestaurante
 
     private function addDish(string $dish, int $amount): string
     {
-        $this->comanda[$dish] = $amount;
+        if(!isset($this->comanda[$dish]))
+        {
+            $this->comanda[$dish] = $amount;
+        }
+        else
+        {
+            $this->comanda[$dish] += $amount;
+        }
 
         return  $this->comandaToString();
     }
