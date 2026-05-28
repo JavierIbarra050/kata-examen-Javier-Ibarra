@@ -80,6 +80,12 @@ class ComandaRestaurante
             $amount = (int) $action[2];
         }
 
+        if ($instruction === "vaciar") {
+            $this->comanda = [];
+            $this->totalPrice = 0;
+
+            return $this->comandaToString();
+        }
         if($instruction === "añadir")
         {
             return $this->addDish($dish, $amount);
