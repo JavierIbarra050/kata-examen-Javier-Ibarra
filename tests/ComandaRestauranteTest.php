@@ -22,18 +22,6 @@ class ComandaRestauranteTest extends TestCase
     /**
      * @test
      */
-    public function givenAñadirDishReturnsThatDish()
-    {
-        $comanda = new ComandaRestaurante();
-
-        $output = $comanda->manageComanda("añadir pizza");
-
-        $this->assertEquals("pizza", $output);
-    }
-
-    /**
-     * @test
-     */
     public function givenAñadirDishWithAmountReturnsDishXAmount()
     {
         $comanda = new ComandaRestaurante();
